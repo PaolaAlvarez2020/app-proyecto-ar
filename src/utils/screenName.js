@@ -23,9 +23,24 @@ const searchStack = {
 
 const accountStack = {
   tab: "AccountTab",
-  account: "Account",
+  drawer: "AccountDrawer",
+  account: "Cuenta",
   login: "Login",
   register: "Register",
+};
+
+const patientStack = {
+  tab: "PatientTab",
+  drawer: "PatientDrawer",
+  patient: "Patient",
+  addPatient: "addPatient",
+  patientInfo: "patientInfo",
+};
+
+const authStack = {
+  login: "Login",
+  app: "appMain",
+  auth: "auth",
 };
 
 export const screen = {
@@ -34,4 +49,6 @@ export const screen = {
   ranking: rankingStack,
   search: searchStack,
   account: accountStack,
+  patient: patientStack,
+  auth: authStack,
 };
