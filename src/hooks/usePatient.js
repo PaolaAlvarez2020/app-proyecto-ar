@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { getPatientsApi } from "../api/";
+import {
+  getPatientsApi,
+  addPatientApi,
+  updatePatientApi,
+  deletePatientApi,
+} from "../api/";
 import { useAuth } from "./useAuth";
 
 export function usePatient() {
@@ -21,8 +26,47 @@ export function usePatient() {
     }
   };
 
+  const addPatient = async (data) => {
+    try {
+      setLoading(true);
+      const response = await addPatientApi(data, auth.token);
+      setLoading(false);
+      return response;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
+  const updatePatient = async (id, data) => {
+    try {
+      setLoading(true);
+      const response = await updatePatientApi(id, data, auth.token);
+      setLoading(false);
+      return response;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
+  const deletePatient = async (id) => {
+    try {
+      setLoading(true);
+      const response = await deletePatientApi(id, auth.token);
+      setLoading(false);
+      return response;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
   return {
     getPatients,
+    addPatient,
+    updatePatient,
+    deletePatient,
     loading,
     error,
     patients,

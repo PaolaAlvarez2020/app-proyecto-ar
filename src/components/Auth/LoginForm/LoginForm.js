@@ -4,7 +4,6 @@ import { Input, Icon, Button } from "react-native-elements";
 import { useFormik } from "formik";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import { screen } from "../../../utils";
 import { initialValues, validationSchema } from "./LoginForm.data";
 import { styles } from "./LoginForm.styles";
 import { useAuth } from "../../../hooks";

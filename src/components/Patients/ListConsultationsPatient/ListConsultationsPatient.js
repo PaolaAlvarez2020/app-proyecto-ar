@@ -3,9 +3,12 @@ import { View, FlatList, TouchableOpacity } from "react-native";
 import { Text, Image } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
-import { styles } from "./ListConsultations.styles";
+import { styles } from "./ListConsultationsPatient.styles";
+import dayjs from "dayjs";
+import { size } from "lodash";
+require("dayjs/locale/es");
 
-export function ListConsultations(props) {
+export function ListConsultationsPatient(props) {
   const { consultations } = props;
   const navigation = useNavigation();
 
@@ -14,7 +17,7 @@ export function ListConsultations(props) {
     navigation.setOptions({
       title: nameConsultation,
     });
-    navigation.navigate(screen.consultation.consultationInfo, {
+    navigation.navigate(screen.patient.consultationInfo, {
       id: consultation.id,
     });
   };
@@ -23,22 +26,40 @@ export function ListConsultations(props) {
     <FlatList
       data={consultations}
       renderItem={(doc) => {
-        console.log(doc);
+        console.log("consultation", doc);
         const consultation = doc.item;
-        const consultationData = consultation?.usuario_data?.persona_data;
+        const diseaseData = consultation?.enfermedad_data;
 
         return (
-          <TouchableOpacity onPress={() => goToConsultation(consultationData)}>
+          <TouchableOpacity onPress={() => goToConsultation(diseaseData)}>
             <View style={styles.consultation}>
               <Image
-                source={require("../../../../assets/img/proyecto-ar-logo.png")}
+                source={
+                  consultation?.foto
+                    ? URL.createObjectURL(consultation.consultationfoto)
+                    : require("../../../../assets/img/consulta.png")
+                }
                 style={styles.image}
               />
 
               <View>
-                <Text style={styles.name}>{consultationData.nombre}</Text>
-                <Text style={styles.info}>{consultationData.ci}</Text>
-                <Text style={styles.info}>{consultationData.ciudad}</Text>
+                <Text style={styles.dateConsultation}>
+                  {dayjs(consultation.fecha).format(
+                    "[Fecha: ] DD-MMM-YY [a las: ] HH:mm"
+                  )}
+                </Text>
+                <Text style={styles.info}>
+                  Enfermedad:{" "}
+                  {size(diseaseData?.nombre) > 30
+                    ? diseaseData?.nombre?.substring(0, 30) + "..."
+                    : diseaseData?.nombre}
+                </Text>
+                <Text style={styles.info}>
+                  Descripción:{" "}
+                  {size(consultation?.descripcion) > 30
+                    ? consultation?.descripcion?.substring(0, 30) + "..."
+                    : consultation?.descripcion}
+                </Text>
               </View>
             </View>
           </TouchableOpacity>

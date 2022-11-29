@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  patient: {
+  consultation: {
     flexDirection: "row",
     margin: 10,
   },
@@ -10,12 +10,14 @@ export const styles = StyleSheet.create({
     height: 80,
     marginRight: 15,
   },
-  name: {
+  dateConsultation: {
+    fontSize: 16,
     fontWeight: "bold",
   },
   info: {
-    color: "#828282",
+    fontSize: 12,
+    color: "#2C2C2C",
     paddingRight: 100,
-    marginTop: 3,
+    marginTop: 5,
   },
 });

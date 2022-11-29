@@ -41,31 +41,3 @@ export function TabNavigation() {
     </Tab.Navigator>
   );
 }
-
-function screenOptions(route, color, size) {
-  let iconName;
-
-  if (route.name === screen.restaurant.tab) {
-    iconName = "compass-outline";
-  }
-
-  if (route.name === screen.favorites.tab) {
-    iconName = "heart-outline";
-  }
-
-  if (route.name === screen.ranking.tab) {
-    iconName = "star-outline";
-  }
-
-  if (route.name === screen.search.tab) {
-    iconName = "magnify";
-  }
-
-  if (route.name === screen.account.tab) {
-    iconName = "home-outline";
-  }
-
-  return (
-    <Icon type="material-community" name={iconName} color={color} size={size} />
-  );
-}

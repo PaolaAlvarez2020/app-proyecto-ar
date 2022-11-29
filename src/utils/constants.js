@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 const SERVER_IP = "192.168.1.200:8000";
 // const SERVER_IP = "tintok-tincode.herokuapp.com";
 
@@ -8,18 +10,10 @@ export const ENV = {
     CURRENT_USER: "auth/usuarioActual",
     LOGIN: "auth/login",
     PATIENTS: "pacientes",
+    PERSONS: "personas",
+    USERS: "usuarios",
+    DISEASES: "enfermedades",
     CONSULTATIONS: "consultas",
-    REFRESH_TOKEN: "auth/refresh_token",
-    VIDEO: "video",
-    VIDEO_ACTIONS: "video/actions",
-    VIDEO_LIKE: "video_like",
-    FOLLOWINGS_VIDEOS: "followings_videos",
-    COMMENT: "comment",
-    USERS: "users",
-    FOLLOW: "follow",
-    FOLLOWEDS_COUNT: "follow/followeds/count",
-    FOLLOWERS_COUNT: "follow/followers/count",
-    NOTIFICATION: "notification",
   },
   JWT: {
     ACCESS: "access",
@@ -37,3 +31,15 @@ export const ENV = {
     FOLLOW: "FOLLOW",
   },
 };
+
+export function calcularEdad(birthday) {
+  const currentDate = dayjs();
+  const years = dayjs(currentDate).diff(birthday, "years");
+  const monthBirthday = parseInt(dayjs(birthday).get("month")) + 1;
+  const monthCurrentDate = parseInt(dayjs(currentDate).get("month")) + 1;
+  const months = monthCurrentDate - monthBirthday;
+
+  return `${years > 0 ? `${years} años  y` : ""} ${
+    months > 1 ? `${months} meses` : `${months} mes`
+  }`;
+}

@@ -11,6 +11,8 @@ export function validationSchema() {
   return Yup.object({
     ci: Yup.string()
       .trim("El carnet de identidad no debe contener espacios")
+      .min(5, "El carnet debe ser mayor a 5 digitos")
+      .max(20, "El carnet debe ser menor a 20 digitos")
       .required("El carnet de identidad es obligatorio"),
     password: Yup.string()
       .trim("La contraseña no debe contener espacios")

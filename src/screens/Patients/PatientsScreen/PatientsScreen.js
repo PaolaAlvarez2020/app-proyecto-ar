@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
-import { Icon } from "react-native-elements";
-import { ListPatients } from "../../../components/Patients/ListPatients/ListPatients";
+import { View } from "react-native";
+import { Icon, Text } from "react-native-elements";
+import { ListPatients } from "../../../components/Patients";
 import { useAuth, usePatient } from "../../../hooks";
 import { screen } from "../../../utils";
 import { styles } from "./PatientsScreen.styles";
@@ -16,10 +16,8 @@ export function PatientsScreen(props) {
     getPatients();
   }, [refetch]);
 
-  console.log(patients);
-
-  const goToAddPatient = () => {
-    navigation.navigate(screen.patient.addPatient);
+  const goToAddEditPatient = () => {
+    navigation.navigate(screen.patient.addEditPatient);
   };
 
   return (
@@ -27,19 +25,32 @@ export function PatientsScreen(props) {
       {!patients ? (
         <Text>CARGANDO...</Text>
       ) : (
-        <ListPatients patients={patients} />
+        <>
+          <Text style={styles.title}>LISTA DE PACIENTES</Text>
+          <ListPatients patients={patients} />
+        </>
       )}
 
       {is_staff && (
-        <Icon
-          reverse
-          type="material-community"
-          name="plus"
-          color="#00a680"
-          containerStyle={styles.btnContainer}
-          onPress={goToAddPatient}
-        />
+        <>
+          <Icon
+            reverse
+            type="material-community"
+            name="plus"
+            color="#00A84C"
+            containerStyle={styles.btnAdd}
+            onPress={goToAddEditPatient}
+          />
+        </>
       )}
+      <Icon
+        reverse
+        type="material-community"
+        name="magnify"
+        color="#001E4C"
+        containerStyle={styles.btnSearch}
+        // onPress={goToAddPatient}
+      />
     </View>
   );
 }
