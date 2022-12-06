@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ScrollView, Alert } from "react-native";
-import { Icon, Avatar, Text } from "react-native-elements";
+import { Icon, Avatar, Text } from "@rneui/themed";
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./UploadImagePatientForm.styles";
 
 export function UploadImagePatientForm(props) {
   const { formik } = props;
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(formik.values?.foto || null);
 
   const openGallery = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({

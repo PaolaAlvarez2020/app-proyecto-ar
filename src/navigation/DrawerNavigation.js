@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, Button, Text } from "react-native-elements";
+import { Icon, Button, Text } from "@rneui/themed";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -9,11 +9,14 @@ import { PatientStack } from "./PatientStack";
 import { ARStack } from "./ARStack";
 import { screen } from "../utils";
 import { useAuth } from "../hooks";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
 
 export function DrawerNavigation() {
   const { auth, logout } = useAuth();
+  const navigation = useNavigation();
+  const route = useRoute();
 
   return (
     <Drawer.Navigator
@@ -24,20 +27,22 @@ export function DrawerNavigation() {
         drawerIcon: ({ focused, color, size }) =>
           iconOptions(route, focused, color, size),
         headerRight: () => (
-          <Button
-            onPress={logout}
-            buttonStyle={{
-              backgroundColor: "#001E4C",
-              marginRight: 10,
-              borderRadius: 100,
-            }}
-            icon={{
-              type: "material-community",
-              name: "power",
-              size: 24,
-              color: "#fff",
-            }}
-          />
+          <>
+            <Button
+              onPress={logout}
+              buttonStyle={{
+                backgroundColor: "#001E4C",
+                marginRight: 10,
+                borderRadius: 100,
+              }}
+              icon={{
+                type: "material-community",
+                name: "power",
+                size: 24,
+                color: "#fff",
+              }}
+            />
+          </>
         ),
       })}
     >

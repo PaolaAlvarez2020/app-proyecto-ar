@@ -3,6 +3,8 @@ import {
   getConsultationsApi,
   getConsultationsByPatientApi,
   getConsultationApi,
+  addConsultationApi,
+  updateImageConsultationApi,
 } from "../api/";
 import { useAuth } from "./useAuth";
 
@@ -52,10 +54,36 @@ export function useConsultation() {
     }
   };
 
+  const updateImageConsultation = async (id, image) => {
+    try {
+      setLoading(true);
+      const response = await updateImageConsultationApi(id, image, auth.token);
+      setLoading(false);
+      return response;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
+  const addConsultation = async (data) => {
+    try {
+      setLoading(true);
+      const response = await addConsultationApi(data, auth.token);
+      setLoading(false);
+      return response;
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
   return {
     getConsultations,
     getConsultation,
     getConsultationsByPatient,
+    updateImageConsultation,
+    addConsultation,
     loading,
     error,
     consultations,

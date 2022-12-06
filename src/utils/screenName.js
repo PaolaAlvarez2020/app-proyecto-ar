@@ -1,31 +1,14 @@
-const restaurantStack = {
-  tab: "RestaurantsTab",
-  restaurants: "Restaurants",
-  addRestaurant: "AddRestaurant",
-  restaurant: "Restaurant",
-  addReviewRestaurant: "AddReviewRestaurant",
-};
-
-const favoritesStack = {
-  tab: "FavoritesTab",
-  favorites: "Favorites",
-};
-
-const rankingStack = {
-  tab: "RankingTab",
-  ranking: "Ranking",
-};
-
 const searchStack = {
-  tab: "SearchTab",
+  drawer: "SearchTab",
   search: "Search",
+  title: "Buscar",
 };
 
 const accountStack = {
   tab: "AccountTab",
   drawer: "AccountDrawer",
   title: "Cuenta",
-  account: "Accpunt",
+  account: "Account",
   login: "Login",
   register: "Register",
 };
@@ -39,6 +22,7 @@ const patientStack = {
   addEditPatient: "addEditPatient",
   patientInfo: "patientInfo",
   consultationInfo: "consultationInfo",
+  addEditConsultation: "addEditConsultation",
 };
 
 const authStack = {
@@ -54,9 +38,6 @@ const ARStack = {
 };
 
 export const screen = {
-  restaurant: restaurantStack,
-  favorites: favoritesStack,
-  ranking: rankingStack,
   search: searchStack,
   account: accountStack,
   patient: patientStack,

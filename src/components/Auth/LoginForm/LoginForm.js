@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Input, Icon, Button } from "react-native-elements";
+import { Input, Icon, Button } from "@rneui/themed";
 import { useFormik } from "formik";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";

@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
-import { Text } from "react-native-elements";
+import { Text, Button } from "@rneui/themed";
 import { useAuth } from "../../../hooks";
 import { styles } from "./Account.styles";
+import { screen } from "../../../utils";
+import { useNavigation } from "@react-navigation/native";
 
-export function Account() {
+export function Account(props) {
   const { me } = useAuth().auth;
+  const navigation = useNavigation();
+  const goToConsultations = (patient, person) => {
+    const namePerson = `${person.nombre} ${person.apellido_paterno} ${person.apellido_materno}`;
+    navigation.navigate(screen.patient.patientInfo, {
+      id: patient?.id,
+      name: namePerson,
+    });
+  };
   return (
     <ScrollView>
       <View style={styles.content}>
@@ -36,6 +46,11 @@ export function Account() {
               {me.is_staff ? "Doctor" : "Paciente"}
             </Text>
           </View>
+          <Button
+            title="Ver consultas"
+            buttonStyle={styles.button}
+            onPress={() => goToConsultations(null, me.persona_data)}
+          />
         </View>
       </View>
     </ScrollView>

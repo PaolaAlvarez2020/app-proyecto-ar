@@ -1,25 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
-import { Icon, Text } from "react-native-elements";
+import { Icon, Text } from "@rneui/themed";
 import { ListConsultationsPatient } from "../../../components/Patients/";
-import { useAuth, useConsultation } from "../../../hooks";
+import { useAuth, useConsultation, usePatient } from "../../../hooks";
+import { useIsFocused } from "@react-navigation/native";
 import { screen } from "../../../utils";
 import { styles } from "./PatientInfoScreen.styles";
+import { ScrollView } from "react-native-gesture-handler";
 
 export function PatientInfoScreen(props) {
+  const isFocused = useIsFocused();
   const { navigation, route } = props;
   const { params } = route;
   const { consultations, getConsultationsByPatient, loading, error } =
     useConsultation();
+  const { patient, getPatient } = usePatient();
   const { is_staff } = useAuth().auth.me;
-  const [refetch, setRefetch] = useState(false);
 
-  useEffect(() => {
-    getConsultationsByPatient(params.id);
-  }, [refetch]);
+  useEffect(async () => {
+    if (params?.id) {
+      await getPatient(params.id);
+    }
+    await getConsultationsByPatient(params.id);
+  }, [isFocused]);
+
+  const goToEditPatient = () => {
+    navigation.navigate(screen.patient.addEditPatient, { patient });
+  };
+
+  const goToAddConsultation = () => {
+    navigation.navigate(screen.patient.addEditConsultation, { patient });
+  };
+
+  const goToSearchConsultation = () => {
+    navigation.navigate(screen.search.search, {
+      type: "consultation",
+    });
+  };
 
   return (
-    <View style={styles.content}>
+    <ScrollView style={styles.content}>
       {!consultations ? (
         <Text>CARGANDO...</Text>
       ) : (
@@ -40,7 +60,7 @@ export function PatientInfoScreen(props) {
             name="plus"
             color="#00A84C"
             containerStyle={styles.btnAdd}
-            // onPress={goToAddPatient}
+            onPress={goToAddConsultation}
           />
           <Icon
             reverse
@@ -48,18 +68,18 @@ export function PatientInfoScreen(props) {
             name="pencil"
             color="#F6B014"
             containerStyle={styles.btnUpdate}
-            // onPress={goToAddPatient}
+            onPress={goToEditPatient}
           />
         </>
       )}
-      <Icon
+      {/* <Icon
         reverse
         type="material-community"
         name="magnify"
         color="#001E4C"
         containerStyle={styles.btnSearch}
-        // onPress={goToAddPatient}
-      />
-    </View>
+        onPress={goToSearchConsultation}
+      /> */}
+    </ScrollView>
   );
 }

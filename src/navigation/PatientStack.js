@@ -4,7 +4,11 @@ import {
   PatientInfoScreen,
   AddEditPatientScreen,
 } from "../screens/Patients";
-import { ConsultationInfoScreen } from "../screens/Consultations";
+import {
+  ConsultationInfoScreen,
+  AddEditConsultationScreen,
+} from "../screens/Consultations";
+import { SearchScreen } from "../screens/SearchScreen";
 import { screen } from "../utils";
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +33,11 @@ export function PatientStack() {
         name={screen.patient.consultationInfo}
         component={ConsultationInfoScreen}
       />
+      <Stack.Screen
+        name={screen.patient.addEditConsultation}
+        component={AddEditConsultationScreen}
+      />
+      <Stack.Screen name={screen.search.search} component={SearchScreen} />
     </Stack.Navigator>
   );
 }

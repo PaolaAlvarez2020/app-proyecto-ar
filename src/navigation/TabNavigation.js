@@ -1,7 +1,7 @@
 import react, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Icon } from "react-native-elements";
+import { Icon } from "@rneui/themed";
 import { AccountStack } from "./AccountStack";
 import { PatientStack } from "./PatientStack";
 import { screen } from "../utils";

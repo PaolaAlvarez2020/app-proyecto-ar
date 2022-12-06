@@ -20,4 +20,8 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  button: {
+    backgroundColor: "#001E4C",
+    margin: 20,
+  },
 });

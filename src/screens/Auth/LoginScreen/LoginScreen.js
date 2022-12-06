@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import { Text, Image } from "react-native-elements";
+import { Text, Image } from "@rneui/themed";
 import { LoginForm } from "../../../components/Auth";
 import { styles } from "./LoginScreen.styles";
 

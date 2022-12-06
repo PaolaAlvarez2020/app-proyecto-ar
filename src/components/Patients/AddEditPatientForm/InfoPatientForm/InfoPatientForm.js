@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Input, Text, Button } from "react-native-elements";
+import { Input, Text, Button } from "@rneui/themed";
 import { Dropdown } from "react-native-element-dropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { styles } from "./InfoPatientForm.styles";
@@ -34,6 +34,7 @@ export function InfoPatientForm(props) {
           placeholder="Carnet de Identidad"
           label="Carnet de Identidad"
           keyboardType="number-pad"
+          defaultValue={formik.values.ci}
           onChangeText={(text) => formik.setFieldValue("ci", text)}
           errorMessage={formik.errors.ci}
         />
@@ -41,6 +42,7 @@ export function InfoPatientForm(props) {
           placeholder="Nombre"
           label="Nombre"
           keyboardType="name-phone-pad"
+          defaultValue={formik.values.nombre}
           onChangeText={(text) => formik.setFieldValue("nombre", text)}
           errorMessage={formik.errors.nombre}
         />
@@ -48,6 +50,7 @@ export function InfoPatientForm(props) {
           placeholder="Apellido Paterno"
           label="Apellido Paterno"
           keyboardType="name-phone-pad"
+          defaultValue={formik.values.apellido_paterno}
           onChangeText={(text) =>
             formik.setFieldValue("apellido_paterno", text)
           }
@@ -57,6 +60,7 @@ export function InfoPatientForm(props) {
           placeholder="Apellido Materno"
           label="Apellido Materno"
           keyboardType="name-phone-pad"
+          defaultValue={formik.values.apellido_materno}
           onChangeText={(text) =>
             formik.setFieldValue("apellido_materno", text)
           }
@@ -66,6 +70,7 @@ export function InfoPatientForm(props) {
           placeholder="Teléfono"
           label="Teléfono"
           keyboardType="number-pad"
+          defaultValue={formik.values.telefono}
           onChangeText={(text) => formik.setFieldValue("telefono", text)}
           errorMessage={formik.errors.telefono}
         />
@@ -73,6 +78,7 @@ export function InfoPatientForm(props) {
           placeholder="Correo Electrónico"
           label="Correo Electrónico"
           keyboardType="email-address"
+          defaultValue={formik.values.email}
           onChangeText={(text) => formik.setFieldValue("email", text)}
           errorMessage={formik.errors.email}
         />
@@ -82,6 +88,7 @@ export function InfoPatientForm(props) {
           multiline={true}
           keyboardType="default"
           inputContainerStyle={styles.textArea}
+          defaultValue={formik.values.direccion}
           onChangeText={(text) => formik.setFieldValue("direccion", text)}
           errorMessage={formik.errors.direccion}
         />
@@ -130,7 +137,11 @@ export function InfoPatientForm(props) {
                 mode="date"
                 maximumDate={new Date()}
                 minimumDate={new Date(1950, 0, 1)}
-                value={formik.values.fecha_nacimiento || new Date()}
+                value={
+                  formik.values.fecha_nacimiento
+                    ? new Date(formik.values.fecha_nacimiento)
+                    : new Date()
+                }
                 onChange={onChangeDatepicker}
               />
             )}
@@ -141,6 +152,7 @@ export function InfoPatientForm(props) {
           placeholder="Ciudad"
           keyboardType="default"
           label="Ciudad"
+          defaultValue={formik.values.ciudad}
           onChangeText={(text) => formik.setFieldValue("ciudad", text)}
           errorMessage={formik.errors.ciudad}
         />

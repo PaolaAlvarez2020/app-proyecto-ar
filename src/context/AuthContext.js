@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { tokenObject } from "../api";
 import { View } from "react-native";
-import { Text } from "react-native-elements";
+import { Text } from "@rneui/themed";
 import { useUser } from "../hooks";
 import { isUndefined } from "lodash";
 

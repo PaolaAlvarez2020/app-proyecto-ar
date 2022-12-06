@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, View, Linking } from "react-native";
-import { Button, Text } from "react-native-elements";
+import { Button, Text } from "@rneui/themed";
 import { Dropdown } from "react-native-element-dropdown";
 import { useFormik } from "formik";
 import { useNavigation } from "@react-navigation/native";

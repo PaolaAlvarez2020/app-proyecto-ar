@@ -43,7 +43,7 @@ export async function getCurrentUserApi(token) {
   }
 }
 
-export async function addUserApi(data, token) {
+export async function addUserApi(formValue, token) {
   try {
     const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USERS}/`;
     const params = {
@@ -52,7 +52,7 @@ export async function addUserApi(data, token) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formValue),
     };
 
     const response = await fetch(url, params);
@@ -65,7 +65,7 @@ export async function addUserApi(data, token) {
   }
 }
 
-export async function updateUserApi(id, data, token) {
+export async function updateUserApi(id, formValue, token) {
   try {
     const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USERS}/${id}/`;
     const params = {
@@ -74,7 +74,7 @@ export async function updateUserApi(id, data, token) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formValue),
     };
 
     const response = await fetch(url, params);

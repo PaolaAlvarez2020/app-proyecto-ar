@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 
 const SERVER_IP = "192.168.1.200:8000";
+// const SERVER_IP = "https://web-production-ca59.up.railway.app";
 // const SERVER_IP = "tintok-tincode.herokuapp.com";
 
 export const ENV = {

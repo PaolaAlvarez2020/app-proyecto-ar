@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
 import { View, ScrollView } from "react-native";
-import { Text, Button } from "react-native-elements";
+import { Text, Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { useConsultation } from "../../../hooks";
 import { screen } from "../../../utils";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../utils";
 import { useAuth } from "../../hooks";
-import { Text } from "react-native-elements";
+import { Text } from "@rneui/themed";
 
 export function AuthScreen(props) {
   const { auth } = useAuth();

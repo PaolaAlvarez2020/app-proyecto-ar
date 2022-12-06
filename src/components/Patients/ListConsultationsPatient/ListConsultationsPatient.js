@@ -1,6 +1,6 @@
 import React from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
-import { Text, Image } from "react-native-elements";
+import { Text, Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
 import { styles } from "./ListConsultationsPatient.styles";
@@ -26,7 +26,7 @@ export function ListConsultationsPatient(props) {
     <FlatList
       data={consultations}
       renderItem={(doc) => {
-        console.log("consultation", doc);
+        // console.log("consultation", doc);
         const consultation = doc.item;
         const diseaseData = consultation?.enfermedad_data;
 
@@ -36,7 +36,7 @@ export function ListConsultationsPatient(props) {
               <Image
                 source={
                   consultation?.foto
-                    ? URL.createObjectURL(consultation.consultationfoto)
+                    ? { uri: consultation.foto }
                     : require("../../../../assets/img/consulta.png")
                 }
                 style={styles.image}

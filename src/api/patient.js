@@ -15,7 +15,38 @@ export async function getPatientsApi() {
   }
 }
 
-export async function addPatientApi(data, token) {
+export async function getPatientApi(id) {
+  try {
+    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.PATIENTS}/${id}/`;
+    const params = {
+      method: "GET",
+    };
+
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function searchPatientsApi(text) {
+  try {
+    const search = `search=${text}`;
+    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.PATIENTS}/?${search}`;
+    const params = {
+      method: "GET",
+    };
+
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function addPatientApi(formValue, token) {
   try {
     const url = `${ENV.BASE_API}/${ENV.API_ROUTES.PATIENTS}/`;
     const params = {
@@ -24,7 +55,7 @@ export async function addPatientApi(data, token) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formValue),
     };
 
     const response = await fetch(url, params);
@@ -37,7 +68,7 @@ export async function addPatientApi(data, token) {
   }
 }
 
-export async function updatePatientApi(id, data, token) {
+export async function updatePatientApi(id, formValue, token) {
   try {
     const url = `${ENV.BASE_API}/${ENV.API_ROUTES.PATIENTS}/${id}/`;
     const params = {
@@ -46,7 +77,7 @@ export async function updatePatientApi(id, data, token) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formValue),
     };
 
     const response = await fetch(url, params);

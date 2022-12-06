@@ -1,6 +1,6 @@
 import React from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
-import { Text, Image } from "react-native-elements";
+import { Text, Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { calcularEdad, screen } from "../../../utils";
 import { styles } from "./ListPatients.styles";
@@ -29,7 +29,11 @@ export function ListPatients(props) {
           <TouchableOpacity onPress={() => goToPatient(patient, personData)}>
             <View style={styles.patient}>
               <Image
-                source={require("../../../../assets/img/default-paciente.png")}
+                source={
+                  personData?.foto
+                    ? { uri: personData?.foto }
+                    : require("../../../../assets/img/default-paciente.png")
+                }
                 style={styles.image}
               />
 

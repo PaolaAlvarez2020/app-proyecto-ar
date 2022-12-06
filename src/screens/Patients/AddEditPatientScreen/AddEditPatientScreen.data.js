@@ -1,18 +1,20 @@
 import * as Yup from "yup";
 
-export function initialVales(data) {
+export function initialValues(data) {
+  const usuario_data = data?.usuario_data;
+  const persona_data = usuario_data?.persona_data;
   return {
-    ci: data?.ci || "",
-    nombre: data?.nombre || "",
-    apellido_paterno: data?.apellido_paterno || "",
-    apellido_materno: data?.apellido_materno || "",
-    telefono: data?.telefono || "",
-    email: data?.email || "",
-    direccion: data?.direccion || "",
-    genero: data?.genero || "",
-    fecha_nacimiento: data?.fecha_nacimiento || "",
-    ciudad: data?.ciudad || "",
-    foto: data?.foto || "",
+    ci: persona_data?.ci || "",
+    nombre: persona_data?.nombre || "",
+    apellido_paterno: persona_data?.apellido_paterno || "",
+    apellido_materno: persona_data?.apellido_materno || "",
+    telefono: persona_data?.telefono || "",
+    email: usuario_data?.email || "",
+    direccion: persona_data?.direccion || "",
+    genero: persona_data?.genero || "",
+    fecha_nacimiento: persona_data?.fecha_nacimiento || "",
+    ciudad: persona_data?.ciudad || "",
+    foto: persona_data?.foto || "",
   };
 }
 
@@ -66,9 +68,9 @@ export function addValidationSchema() {
       .trim("El género no debe incluir espacios en blanco por demas")
       .default("UNDEFINED")
       .strict(true),
-    fecha_nacimiento: Yup.date("La fecha no es válida").required(
-      "La fecha de nacimiento es obligatorio"
-    ),
+    fecha_nacimiento: Yup.date("La fecha no es válida")
+      .default(new Date())
+      .required("La fecha de nacimiento es obligatorio"),
     ciudad: Yup.string()
       .trim("La ciudad no debe incluir espacios en blanco por demas")
       .strict(true)
@@ -145,16 +147,17 @@ export function updateValidationSchema() {
       .trim("La ciudad no debe incluir espacios en blanco por demas")
       .strict(true)
       .required("La ciudad es obligatorio"),
-    foto: Yup.string("La imagen no es válida").test(
-      "Valor correcto",
-      "La imagen no es válida",
-      (val, optionsValue) => {
-        const file = optionsValue.options.originalValue;
-        if (file) {
-          return true;
-        }
-        return false;
-      }
-    ),
+    foto: Yup.string("La imagen no es válida"),
+    // .test(
+    //   "Valor correcto",
+    //   "La imagen no es válida",
+    //   (val, optionsValue) => {
+    //     const file = optionsValue.options.originalValue;
+    //     if (file) {
+    //       return true;
+    //     }
+    //     return false;
+    //   }
+    // ),
   });
 }
