@@ -17,11 +17,9 @@ export function PatientInfoScreen(props) {
   const { patient, getPatient } = usePatient();
   const { is_staff } = useAuth().auth.me;
 
-  useEffect(async () => {
-    if (params?.id) {
-      await getPatient(params.id);
-    }
-    await getConsultationsByPatient(params.id);
+  useEffect(() => {
+    getPatient(params.id);
+    getConsultationsByPatient(params.id);
   }, [isFocused]);
 
   const goToEditPatient = () => {

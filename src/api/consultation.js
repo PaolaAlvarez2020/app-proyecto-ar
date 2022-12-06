@@ -1,5 +1,21 @@
 import { ENV } from "../utils";
 
+export async function searchConsultationsByUserApi(id) {
+  try {
+    const search = `search=${id}`;
+    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.CONSULTATIONS}/?${search}`;
+    const params = {
+      method: "GET",
+    };
+
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function getConsultationsApi() {
   try {
     const url = `${ENV.BASE_API}/${ENV.API_ROUTES.CONSULTATIONS}/`;

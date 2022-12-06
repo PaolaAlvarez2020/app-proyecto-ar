@@ -13,6 +13,13 @@ const accountStack = {
   register: "Register",
 };
 
+const consultationStack = {
+  drawer: "ConsultationDrawer",
+  myTitle: "Mis Consultas",
+  myConsultations: "myConsultations",
+  myConsultation: "myConsultation",
+};
+
 const patientStack = {
   tab: "PatientTab",
   drawer: "PatientDrawer",
@@ -39,6 +46,7 @@ const ARStack = {
 
 export const screen = {
   search: searchStack,
+  consultation: consultationStack,
   account: accountStack,
   patient: patientStack,
   auth: authStack,

@@ -11,7 +11,7 @@ export function Account(props) {
   const navigation = useNavigation();
   const goToConsultations = (patient, person) => {
     const namePerson = `${person.nombre} ${person.apellido_paterno} ${person.apellido_materno}`;
-    navigation.navigate(screen.patient.patientInfo, {
+    navigation.navigate(screen.consultation.myConsultations, {
       id: patient?.id,
       name: namePerson,
     });

@@ -5,6 +5,7 @@ import {
   getConsultationApi,
   addConsultationApi,
   updateImageConsultationApi,
+  searchConsultationsByUserApi,
 } from "../api/";
 import { useAuth } from "./useAuth";
 
@@ -35,6 +36,19 @@ export function useConsultation() {
       setLoading(false);
 
       setConsultation(response);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
+  };
+
+  const searchConsultationsByUser = async (id) => {
+    try {
+      setLoading(true);
+      const response = await searchConsultationsByUserApi(id);
+      setLoading(false);
+
+      setConsultations(response);
     } catch (err) {
       setError(err);
       setLoading(false);
@@ -83,6 +97,7 @@ export function useConsultation() {
     getConsultation,
     getConsultationsByPatient,
     updateImageConsultation,
+    searchConsultationsByUser,
     addConsultation,
     loading,
     error,

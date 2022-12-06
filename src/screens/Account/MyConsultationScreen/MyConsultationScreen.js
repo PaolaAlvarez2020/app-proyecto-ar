@@ -5,9 +5,9 @@ import { Text, Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { useConsultation } from "../../../hooks";
 import { screen } from "../../../utils";
-import { styles } from "./ConsultationInfoScreen.styles";
+import { styles } from "./MyConsultationScreen.styles";
 
-export function ConsultationInfoScreen(props) {
+export function MyConsultationScreen(props) {
   const { route } = props;
   const navigation = useNavigation();
   const { params } = route;
@@ -18,12 +18,6 @@ export function ConsultationInfoScreen(props) {
       await getConsultation(params.id);
     })();
   }, []);
-
-  const goToAR = () => {
-    navigation.navigate(screen.ar.drawer, {
-      screen: screen.ar.ar,
-    });
-  };
 
   if (!consultation)
     return (
@@ -42,7 +36,7 @@ export function ConsultationInfoScreen(props) {
     <ScrollView>
       <View style={styles.content}>
         <View>
-          <Text h2>CONSULTAS</Text>
+          <Text h2>CONSULTA</Text>
           <View style={styles.contentInfo}>
             <Text style={styles.titleDisplayInfo}>Fecha de consulta</Text>
             <Text style={styles.displayInfo}>
@@ -74,13 +68,6 @@ export function ConsultationInfoScreen(props) {
             </Text>
           </View>
         </View>
-      </View>
-      <View>
-        <Button
-          title="Realidad Aumentada"
-          buttonStyle={styles.ARButton}
-          onPress={goToAR}
-        />
       </View>
     </ScrollView>
   );
